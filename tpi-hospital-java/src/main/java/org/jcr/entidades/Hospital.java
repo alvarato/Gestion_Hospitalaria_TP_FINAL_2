@@ -48,6 +48,15 @@ public class Hospital {
         }
     }
 
+    // Usados por Departamento.setHospital() y Paciente.setHospital() al cambiar de hospital.
+    void quitarDepartamento(Departamento departamento) {
+        departamentos.remove(departamento);
+    }
+
+    void quitarPaciente(Paciente paciente) {
+        pacientes.remove(paciente);
+    }
+
     public List<Departamento> getDepartamentos() { return Collections.unmodifiableList(departamentos); }
 
     public List<Paciente> getPacientes() { return Collections.unmodifiableList(pacientes); }

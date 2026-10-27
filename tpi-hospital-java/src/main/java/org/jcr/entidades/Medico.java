@@ -31,8 +31,24 @@ public class Medico extends Persona {
 
     public Departamento getDepartamento() { return departamento; }
 
-    // Lo invoca Departamento.agregarMedico() para mantener la relación bidireccional.
-    void setDepartamento(Departamento departamento) { this.departamento = departamento; }
+    // Valida la especialidad y sincroniza los dos lados: sale del departamento anterior y entra en el nuevo.
+    public void setDepartamento(Departamento nuevoDepartamento) {
+        if (nuevoDepartamento != null && nuevoDepartamento.getEspecialidad() != especialidad) {
+            throw new IllegalArgumentException(
+                    "La especialidad del médico no coincide con la del departamento");
+        }
+        if (this.departamento == nuevoDepartamento) {
+            return;
+        }
+        Departamento anterior = this.departamento;
+        this.departamento = nuevoDepartamento;
+        if (anterior != null) {
+            anterior.quitarMedico(this);
+        }
+        if (nuevoDepartamento != null) {
+            nuevoDepartamento.agregarMedico(this);
+        }
+    }
 
     public void agregarCita(Cita cita) {
         if (cita == null) {

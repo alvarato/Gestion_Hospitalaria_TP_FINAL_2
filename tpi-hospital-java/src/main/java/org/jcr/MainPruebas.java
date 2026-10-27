@@ -1,14 +1,7 @@
 package org.jcr;
 
-import org.jcr.entidades.Cita;
-import org.jcr.entidades.Departamento;
-import org.jcr.entidades.HistoriaClinica;
-import org.jcr.entidades.Hospital;
-import org.jcr.entidades.Matricula;
-import org.jcr.entidades.Medico;
-import org.jcr.entidades.Paciente;
-import org.jcr.entidades.Persona;
-import org.jcr.entidades.Sala;
+import org.jcr.entidades.*;
+
 import org.jcr.enums.EspecialidadMedica;
 import org.jcr.enums.EstadoCita;
 import org.jcr.enums.TipoSangre;

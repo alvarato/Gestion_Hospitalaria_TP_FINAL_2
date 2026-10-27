@@ -28,8 +28,20 @@ public class Departamento {
 
     public Hospital getHospital() { return hospital; }
 
-    // Lo invoca Hospital.agregarDepartamento() para mantener la relación bidireccional.
-    void setHospital(Hospital hospital) { this.hospital = hospital; }
+    // Sincroniza los dos lados: sale del hospital anterior y entra en el nuevo.
+    public void setHospital(Hospital nuevoHospital) {
+        if (this.hospital == nuevoHospital) {
+            return;
+        }
+        Hospital anterior = this.hospital;
+        this.hospital = nuevoHospital;
+        if (anterior != null) {
+            anterior.quitarDepartamento(this);
+        }
+        if (nuevoHospital != null) {
+            nuevoHospital.agregarDepartamento(this);
+        }
+    }
 
     public void agregarMedico(Medico medico) {
         if (medico == null) {
@@ -42,7 +54,14 @@ public class Departamento {
         if (!medicos.contains(medico)) {
             medicos.add(medico);
         }
-        medico.setDepartamento(this);
+        if (medico.getDepartamento() != this) {
+            medico.setDepartamento(this);
+        }
+    }
+
+    // Usado por Medico.setDepartamento() al cambiar de departamento.
+    void quitarMedico(Medico medico) {
+        medicos.remove(medico);
     }
 
     // Fábrica: las salas solo pueden ser creadas por el departamento (composición).

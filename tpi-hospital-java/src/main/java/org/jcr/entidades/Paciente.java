@@ -20,7 +20,7 @@ public class Paciente extends Persona {
         super(nombre, apellido, dni, fechaNacimiento, tipoSangre);
         this.telefono = validarTexto(telefono, "El teléfono");
         this.direccion = validarTexto(direccion, "La dirección");
-        this.historiaClinica = new HistoriaClinica(getDni());
+        this.historiaClinica = new HistoriaClinica(this);
     }
 
     public String getTelefono() { return telefono; }
@@ -29,8 +29,20 @@ public class Paciente extends Persona {
 
     public Hospital getHospital() { return hospital; }
 
-    // Lo invoca Hospital.agregarPaciente() para mantener la relación bidireccional.
-    void setHospital(Hospital hospital) { this.hospital = hospital; }
+    // Sincroniza los dos lados: sale del hospital anterior y entra en el nuevo.
+    public void setHospital(Hospital nuevoHospital) {
+        if (this.hospital == nuevoHospital) {
+            return;
+        }
+        Hospital anterior = this.hospital;
+        this.hospital = nuevoHospital;
+        if (anterior != null) {
+            anterior.quitarPaciente(this);
+        }
+        if (nuevoHospital != null) {
+            nuevoHospital.agregarPaciente(this);
+        }
+    }
 
     public HistoriaClinica getHistoriaClinica() { return historiaClinica; }
 

@@ -7,28 +7,45 @@ import java.util.List;
 
 public class HistoriaClinica {
 
-    private final String numero;
+    private final Paciente paciente;
+    private final String numeroHistoria;
     private final List<String> diagnosticos = new ArrayList<>();
     private final List<String> tratamientos = new ArrayList<>();
     private final List<String> alergias = new ArrayList<>();
 
     // Constructor package-private: solo Paciente puede crearla.
-    HistoriaClinica(String dniPaciente) {
-        this.numero = "HC-" + dniPaciente + "-" + LocalDate.now().getYear();
+    HistoriaClinica(Paciente paciente) {
+        if (paciente == null) {
+            throw new IllegalArgumentException("El paciente no puede ser nulo");
+        }
+        this.paciente = paciente;
+        this.numeroHistoria = "HC-" + paciente.getDni() + "-" + LocalDate.now().getYear();
     }
 
-    public String getNumero() { return numero; }
+    public Paciente getPaciente() { return paciente; }
+
+    public String getNumeroHistoria() { return numeroHistoria; }
 
     public void agregarDiagnostico(String diagnostico) {
-        diagnosticos.add(Persona.validarTexto(diagnostico, "El diagnóstico"));
+        if (esValido(diagnostico)) {
+            diagnosticos.add(diagnostico.trim());
+        }
     }
 
     public void agregarTratamiento(String tratamiento) {
-        tratamientos.add(Persona.validarTexto(tratamiento, "El tratamiento"));
+        if (esValido(tratamiento)) {
+            tratamientos.add(tratamiento.trim());
+        }
     }
 
     public void agregarAlergia(String alergia) {
-        alergias.add(Persona.validarTexto(alergia, "La alergia"));
+        if (esValido(alergia)) {
+            alergias.add(alergia.trim());
+        }
+    }
+
+    private boolean esValido(String texto) {
+        return texto != null && !texto.trim().isEmpty();
     }
 
     public List<String> getDiagnosticos() { return Collections.unmodifiableList(diagnosticos); }

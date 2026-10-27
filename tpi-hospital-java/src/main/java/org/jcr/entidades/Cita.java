@@ -49,10 +49,8 @@ public class Cita {
 
     public String getObservaciones() { return observaciones; }
 
+    // Observaciones nulas quedan como texto vacío.
     public void setObservaciones(String observaciones) {
-        if (observaciones == null) {
-            throw new IllegalArgumentException("Las observaciones no pueden ser nulas");
-        }
-        this.observaciones = observaciones;
+        this.observaciones = (observaciones == null) ? "" : observaciones;
     }
 }
