@@ -11,8 +11,8 @@ Sistema de gestión hospitalaria con objetos en memoria: pacientes, médicos, de
 
 ## Datos del estudiante
 
-- **Apellido y nombre:** [COMPLETAR]
-- **Comisión / Cátedra:** [COMPLETAR]
+- **Apellido y nombre:** Bernabey Izquierdo Alvaro.
+- **Comisión / Cátedra:** Comisión 2, Programación 2.
 
 ## Requisitos técnicos
 
