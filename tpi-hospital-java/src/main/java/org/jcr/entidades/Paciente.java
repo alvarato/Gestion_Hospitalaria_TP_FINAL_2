@@ -46,7 +46,7 @@ public class Paciente extends Persona {
 
     public HistoriaClinica getHistoriaClinica() { return historiaClinica; }
 
-    public void agregarCita(Cita cita) {
+    public void addCita(Cita cita) {
         if (cita == null) {
             throw new IllegalArgumentException("La cita no puede ser nula");
         }

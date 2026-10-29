@@ -45,9 +45,9 @@ public class CitaManager implements CitaService {
 
         Cita cita = new Cita(paciente, medico, sala, fechaHora, costo);
         citas.add(cita);
-        paciente.agregarCita(cita);
-        medico.agregarCita(cita);
-        sala.agregarCita(cita);
+        paciente.addCita(cita);
+        medico.addCita(cita);
+        sala.addCita(cita);
         return cita;
     }
 

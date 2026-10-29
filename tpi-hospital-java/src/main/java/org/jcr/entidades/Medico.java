@@ -50,7 +50,7 @@ public class Medico extends Persona {
         }
     }
 
-    public void agregarCita(Cita cita) {
+    public void addCita(Cita cita) {
         if (cita == null) {
             throw new IllegalArgumentException("La cita no puede ser nula");
         }
