@@ -6,8 +6,7 @@ Sistema de gestión hospitalaria con objetos en memoria: pacientes, médicos, de
 
 ## Entrega
 
-- 🎥 **Video demostrativo:** [COMPLETAR: enlace al video con permisos públicos de visualización]
-- 📚 **Documentación (PDF):** [COMPLETAR: enlace al PDF] *(o el archivo PDF incluido en la raíz del repositorio)*
+- 🎥 **Video demostrativo:** https://youtu.be/uVW77Niu7bc
 
 ## Datos del estudiante
 
